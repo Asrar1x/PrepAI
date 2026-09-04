@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 from app.api.dependencies import get_db, get_current_user
 from app.models.user import User
 from app.models.interview import InterviewSession
-from app.ai.custom_models.model_manager import ml_models
+from app.ai.custom_models.model_manager import get_models
 
 router = APIRouter()
 
@@ -91,16 +91,18 @@ async def chat_interview(
     user_answer = request.message
     prev_question = request.history[-1].content if request.history else "Please introduce yourself."
     
-    # Evaluate Answer Quality
-    quality_data = ml_models.classify_answer(prev_question, user_answer)
+    # Per-thread manager — model+XAI init paid once per worker thread.
+    models = get_models()
+    # Evaluate Answer Quality (Model 1 — BERT, fallback to heuristic)
+    quality_data = models.classify_answer(prev_question, user_answer)
     quality_label = quality_data.get('label', 'Average')
     quality_score = quality_data.get('confidence', 0.5)
-    
-    # Compute Relevance
-    relevance_score = ml_models.compute_relevance(prev_question, user_answer)
-    
-    # Generate Next Question
-    next_question = ml_models.generate_question(
+
+    # Compute Relevance (Model 3 — SBERT)
+    relevance_score = models.compute_relevance(prev_question, user_answer)
+
+    # Generate Next Question (Model 2 — GPT-2)
+    next_question = models.generate_question(
         role="Interviewer",
         topic=interview.job_role,
         prev_q=prev_question,

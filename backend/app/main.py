@@ -18,8 +18,11 @@ async def lifespan(app: FastAPI):
     await redis_client.connect()
     
     # Initialize ML Models
-    from app.ai.custom_models.model_manager import ml_models
+    # Eager init on the main thread so the very first request is fast.
+    # Per-thread warm-up is still applied lazily in anyio worker threads.
+    from app.ai.custom_models.model_manager import ml_models, get_models
     ml_models.initialize()
+    get_models()  # ensure per-thread handle is set up
     
     yield
     # Shutdown

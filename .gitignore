@@ -25,10 +25,15 @@ dist-ssr
 
 # Backend
 backend/venv
-backend/__pycache__
+__pycache__/
+*.pyc
+*.pyo
 backend/.pytest_cache
-prepai_trained_models
+prepai_trained_models/
 .env
+
+# ML Training
+prepai_model_training/datasets/
 
 # Playwright
 playwright-report/
