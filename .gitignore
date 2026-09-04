@@ -40,3 +40,6 @@ playwright-report/
 test-results/
 test-failure.html
 test-failure.png
+.playwright-mcp/
+*.ps1
+*.png

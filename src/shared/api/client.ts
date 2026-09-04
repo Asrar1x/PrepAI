@@ -39,8 +39,12 @@ function toAppError(error: AxiosError<ApiEnvelope<unknown> | { message?: string 
 
 async function refreshAccessToken(): Promise<string | null> {
   if (!refreshPromise) {
+    const refreshToken = useAuthStore.getState().refreshToken;
     refreshPromise = refreshClient
-      .post<ApiEnvelope<Pick<AuthSession, 'accessToken'>> | Pick<AuthSession, 'accessToken'>>('/auth/refresh')
+      .post<ApiEnvelope<Pick<AuthSession, 'accessToken'>> | Pick<AuthSession, 'accessToken'>>(
+        '/auth/refresh',
+        refreshToken ? { refresh_token: refreshToken } : undefined,
+      )
       .then((response) => unwrapEnvelope(response.data).accessToken ?? null)
       .then((accessToken) => {
         useAuthStore.getState().setAccessToken(accessToken);

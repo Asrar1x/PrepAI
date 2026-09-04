@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/shared/stores/authStore';
 import { apiClient } from '@/shared/api/client';
+import { adaptUser } from '@/shared/api/adapters';
 import { GraduationCap, Briefcase } from 'lucide-react';
 
 export default function Auth() {
@@ -13,7 +14,7 @@ export default function Auth() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { setAccessToken, updateUser } = useAuthStore();
+  const { setAccessToken, setRefreshToken, updateUser } = useAuthStore();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,9 +25,12 @@ export default function Auth() {
       if (isLogin) {
         const res = await apiClient.post('/auth/login', { email, password });
         setAccessToken(res.data.data.access_token);
+        if (res.data.data.refresh_token) {
+          setRefreshToken(res.data.data.refresh_token);
+        }
 
         const userRes = await apiClient.get('/users/me');
-        updateUser(userRes.data.data);
+        updateUser(adaptUser(userRes.data.data));
         navigate('/dashboard');
       } else {
         await apiClient.post('/auth/register', {
@@ -37,9 +41,12 @@ export default function Auth() {
         });
         const res = await apiClient.post('/auth/login', { email, password });
         setAccessToken(res.data.data.access_token);
+        if (res.data.data.refresh_token) {
+          setRefreshToken(res.data.data.refresh_token);
+        }
 
         const userRes = await apiClient.get('/users/me');
-        updateUser(userRes.data.data);
+        updateUser(adaptUser(userRes.data.data));
         navigate('/dashboard');
       }
     } catch (err: any) {

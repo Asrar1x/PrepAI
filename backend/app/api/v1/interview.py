@@ -16,6 +16,7 @@ class InterviewStartRequest(BaseModel):
     job_role: str
     company_target: Optional[str] = None
     interview_type: str = "technical"
+    persona: str = "friendly_tutor"
     resume_id: Optional[str] = None
 
 class InterviewMessage(BaseModel):
@@ -46,6 +47,7 @@ async def start_interview(
         job_role=request.job_role,
         company_target=request.company_target,
         interview_type=request.interview_type,
+        persona=request.persona or "friendly_tutor",
         status="in_progress"
     )
     

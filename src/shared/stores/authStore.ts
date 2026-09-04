@@ -7,10 +7,12 @@ export type AuthStatus = 'anonymous' | 'authenticated';
 interface AuthState {
   user: User | null;
   accessToken: string | null;
+  refreshToken: string | null;
   status: AuthStatus;
   pendingPath: string | null;
   setSession: (session: AuthSession) => void;
   setAccessToken: (accessToken: string | null) => void;
+  setRefreshToken: (refreshToken: string | null) => void;
   updateUser: (changes: Partial<User>) => void;
   signOut: () => void;
   setPendingPath: (path: string | null) => void;
@@ -20,6 +22,7 @@ interface AuthState {
 const anonymousState = {
   user: null,
   accessToken: null,
+  refreshToken: null,
   status: 'anonymous' as const,
 };
 
@@ -28,10 +31,11 @@ export const useAuthStore = create<AuthState>()(
     (set) => ({
       ...anonymousState,
   pendingPath: null,
-  setSession: ({ user, accessToken }) => set({ user, accessToken, status: 'authenticated' }),
+  setSession: ({ user, accessToken, refreshToken }) => set({ user, accessToken, refreshToken, status: 'authenticated' }),
   setAccessToken: (accessToken) => set({ accessToken, status: accessToken ? 'authenticated' : 'anonymous' }),
+  setRefreshToken: (refreshToken) => set({ refreshToken }),
   updateUser: (changes) => set((state) => {
-    return state.user ? { user: { ...state.user, ...changes } } : state;
+    return state.user ? { user: { ...state.user, ...changes } } : { user: changes as User };
   }),
   signOut: () => set({ ...anonymousState, pendingPath: null }),
   setPendingPath: (pendingPath) => set({ pendingPath }),

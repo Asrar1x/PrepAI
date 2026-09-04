@@ -15,6 +15,7 @@ export interface User {
 export interface AuthSession {
   user: User;
   accessToken: string;
+  refreshToken: string;
 }
 
 export type ApiStatus = 'success' | 'error';
