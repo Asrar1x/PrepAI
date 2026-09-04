@@ -1,0 +1,202 @@
+[
+  {
+    "slug": "software-developer-sde",
+    "title": "Software Developer (SDE)",
+    "category": "Software Engineering",
+    "summary": "Builds production software systems across backend, frontend, and infrastructure.",
+    "salary_range": "₹6L - ₹15L",
+    "difficulty": "intermediate",
+    "interview_rounds": 4,
+    "skills": ["DSA", "System Design", "OOPs", "DBMS", "Operating Systems", "Networking basics"]
+  },
+  {
+    "slug": "frontend-developer",
+    "title": "Frontend Developer",
+    "category": "Software Engineering",
+    "summary": "Implements user-facing interfaces with modern JS frameworks and design systems.",
+    "salary_range": "₹5L - ₹14L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["React", "JavaScript/TypeScript", "CSS", "Web Vitals", "Accessibility", "Testing"]
+  },
+  {
+    "slug": "backend-developer",
+    "title": "Backend Developer",
+    "category": "Software Engineering",
+    "summary": "Designs and ships server-side APIs, data models, and integrations.",
+    "salary_range": "₹6L - ₹15L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["REST/gRPC", "Databases (SQL & NoSQL)", "Caching", "AuthN/AuthZ", "Microservices", "Linux"]
+  },
+  {
+    "slug": "fullstack-developer",
+    "title": "Full-Stack Developer",
+    "category": "Software Engineering",
+    "summary": "Owns end-to-end features across UI, API, and persistence layers.",
+    "salary_range": "₹6L - ₹14L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["React", "Node/Python/Go", "SQL", "REST", "CI/CD", "Cloud basics"]
+  },
+  {
+    "slug": "sre-devops",
+    "title": "SRE / DevOps Engineer",
+    "category": "Software Engineering",
+    "summary": "Keeps production reliable: deployment, observability, on-call.",
+    "salary_range": "₹7L - ₹16L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["Linux", "Docker", "Kubernetes", "Terraform", "Prometheus/Grafana", "Networking"]
+  },
+  {
+    "slug": "qa-sdet",
+    "title": "QA / SDET",
+    "category": "Software Engineering",
+    "summary": "Builds test automation and ensures release quality.",
+    "salary_range": "₹5L - ₹12L",
+    "difficulty": "foundation",
+    "interview_rounds": 3,
+    "skills": ["Selenium/Cypress", "Test design", "API testing", "CI", "Bug triage", "Scripting"]
+  },
+  {
+    "slug": "data-analyst",
+    "title": "Data Analyst",
+    "category": "Data & AI",
+    "summary": "Turns raw data into dashboards and recommendations for business teams.",
+    "salary_range": "₹5L - ₹12L",
+    "difficulty": "foundation",
+    "interview_rounds": 3,
+    "skills": ["SQL", "Python", "Statistics", "PowerBI/Tableau", "Excel", "Storytelling"]
+  },
+  {
+    "slug": "data-engineer",
+    "title": "Data Engineer",
+    "category": "Data & AI",
+    "summary": "Builds and maintains data pipelines and warehouses.",
+    "salary_range": "₹7L - ₹15L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["SQL", "Python/Scala", "Airflow", "Spark", "Warehouses (Snowflake/BigQuery)", "dbt"]
+  },
+  {
+    "slug": "data-scientist",
+    "title": "Data Scientist",
+    "category": "Data & AI",
+    "summary": "Builds predictive and statistical models for business problems.",
+    "salary_range": "₹8L - ₹18L",
+    "difficulty": "advanced",
+    "interview_rounds": 4,
+    "skills": ["Statistics", "Python", "ML algorithms", "Experimentation", "SQL", "Communication"]
+  },
+  {
+    "slug": "ml-engineer",
+    "title": "Machine Learning Engineer",
+    "category": "Data & AI",
+    "summary": "Deploys and serves ML models in production systems.",
+    "salary_range": "₹10L - ₹20L",
+    "difficulty": "advanced",
+    "interview_rounds": 5,
+    "skills": ["PyTorch/TensorFlow", "Maths", "MLOps", "Serving", "Distributed training", "CUDA"]
+  },
+  {
+    "slug": "product-manager",
+    "title": "Product Manager",
+    "category": "Management",
+    "summary": "Owns product strategy, roadmap, and cross-functional delivery.",
+    "salary_range": "₹8L - ₹18L",
+    "difficulty": "intermediate",
+    "interview_rounds": 4,
+    "skills": ["Agile", "Wireframing", "Strategy", "Analytics", "Stakeholder mgmt", "Prioritization"]
+  },
+  {
+    "slug": "program-manager",
+    "title": "Program Manager",
+    "category": "Management",
+    "summary": "Drives cross-team delivery for complex initiatives.",
+    "salary_range": "₹10L - ₹22L",
+    "difficulty": "advanced",
+    "interview_rounds": 4,
+    "skills": ["Project planning", "Risk mgmt", "Communication", "Negotiation", "Metrics", "Execution"]
+  },
+  {
+    "slug": "business-analyst",
+    "title": "Business Analyst",
+    "category": "Management",
+    "summary": "Bridges business and tech: requirements, process design, and insights.",
+    "salary_range": "₹5L - ₹12L",
+    "difficulty": "foundation",
+    "interview_rounds": 3,
+    "skills": ["SQL", "Excel", "Requirements", "Process mapping", "Communication", "Tools (Jira)"]
+  },
+  {
+    "slug": "cybersecurity-analyst",
+    "title": "Cybersecurity Analyst",
+    "category": "Specialized",
+    "summary": "Detects, prevents, and responds to security threats.",
+    "salary_range": "₹7L - ₹16L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["Networking", "Pen testing", "Linux", "Cryptography", "SIEM", "OWASP"]
+  },
+  {
+    "slug": "cloud-engineer",
+    "title": "Cloud Engineer",
+    "category": "Specialized",
+    "summary": "Architects and operates workloads on AWS/Azure/GCP.",
+    "salary_range": "₹7L - ₹16L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["AWS/Azure/GCP", "Networking", "IAM", "Terraform", "Containers", "Cost optimization"]
+  },
+  {
+    "slug": "embedded-engineer",
+    "title": "Embedded Engineer",
+    "category": "Specialized",
+    "summary": "Builds firmware and low-level systems for hardware.",
+    "salary_range": "₹5L - ₹13L",
+    "difficulty": "advanced",
+    "interview_rounds": 3,
+    "skills": ["C/C++", "RTOS", "Microcontrollers", "Communication protocols", "Debugging", "Datasheets"]
+  },
+  {
+    "slug": "mobile-developer",
+    "title": "Mobile Developer",
+    "category": "Specialized",
+    "summary": "Builds iOS/Android apps with native or cross-platform stacks.",
+    "salary_range": "₹5L - ₹14L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["Swift/Kotlin", "React Native/Flutter", "Mobile UI patterns", "Networking", "Performance", "Testing"]
+  },
+  {
+    "slug": "ui-ux-designer",
+    "title": "UI/UX Designer",
+    "category": "Specialized",
+    "summary": "Designs intuitive, accessible interfaces and end-to-end flows.",
+    "salary_range": "₹5L - ₹12L",
+    "difficulty": "intermediate",
+    "interview_rounds": 3,
+    "skills": ["Figma", "Wireframing", "Design systems", "Research", "Accessibility", "Prototyping"]
+  },
+  {
+    "slug": "ai-research-engineer",
+    "title": "AI Research Engineer",
+    "category": "Data & AI",
+    "summary": "Implements and prototypes cutting-edge AI research ideas.",
+    "salary_range": "₹14L - ₹30L",
+    "difficulty": "advanced",
+    "interview_rounds": 5,
+    "skills": ["Deep learning", "Maths", "Papers-to-code", "PyTorch/JAX", "Experimentation", "Communication"]
+  },
+  {
+    "slug": "consulting-analyst",
+    "title": "Consulting Analyst",
+    "category": "Management",
+    "summary": "Solves ambiguous business problems for clients across industries.",
+    "salary_range": "₹7L - ₹18L",
+    "difficulty": "intermediate",
+    "interview_rounds": 4,
+    "skills": ["Case interview", "Communication", "Excel/PPT", "Logical reasoning", "Estimation", "Storylining"]
+  }
+]

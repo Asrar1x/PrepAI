@@ -1,0 +1,28 @@
+:root {
+  --ink-950: #0A0A0F;
+  --ink-900: #111118;
+  --ink-800: #1A1A26;
+  --slate-800: #1E293B;
+  --signal-700: #312E81;
+  --signal-600: #4F46E5;
+  --signal-500: #6366F1;
+  --signal-400: #8B5CF6;
+  --success-500: #10B981;
+  --warning-500: #F59E0B;
+  --danger-500: #EF4444;
+  --surface: #FFFFFF;
+  --surface-subtle: #F7F7FB;
+  --surface-muted: #EEF0F7;
+  --line: #E3E5EE;
+  --line-strong: #C8CCDB;
+  --text: #171923;
+  --text-muted: #626A7C;
+  --text-subtle: #8991A4;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, .04), 0 8px 24px rgba(21, 23, 39, .06);
+  --shadow-float: 0 16px 48px rgba(10, 10, 15, .18);
+}

@@ -1,0 +1,47 @@
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import type { AuthSession, User } from '@/shared/types';
+
+export type AuthStatus = 'anonymous' | 'authenticated';
+
+interface AuthState {
+  user: User | null;
+  accessToken: string | null;
+  status: AuthStatus;
+  pendingPath: string | null;
+  setSession: (session: AuthSession) => void;
+  setAccessToken: (accessToken: string | null) => void;
+  updateUser: (changes: Partial<User>) => void;
+  signOut: () => void;
+  setPendingPath: (path: string | null) => void;
+  clearPendingPath: () => void;
+}
+
+const anonymousState = {
+  user: null,
+  accessToken: null,
+  status: 'anonymous' as const,
+};
+
+export const useAuthStore = create<AuthState>()(
+  persist(
+    (set) => ({
+      ...anonymousState,
+  pendingPath: null,
+  setSession: ({ user, accessToken }) => set({ user, accessToken, status: 'authenticated' }),
+  setAccessToken: (accessToken) => set({ accessToken, status: accessToken ? 'authenticated' : 'anonymous' }),
+  updateUser: (changes) => set((state) => {
+    return state.user ? { user: { ...state.user, ...changes } } : state;
+  }),
+  signOut: () => set({ ...anonymousState, pendingPath: null }),
+  setPendingPath: (pendingPath) => set({ pendingPath }),
+  clearPendingPath: () => set({ pendingPath: null }),
+    }),
+    {
+      name: 'prepai-auth-storage',
+    }
+  )
+);
+
+export const selectCurrentUser = (state: AuthState) => state.user;
+export const selectIsAuthenticated = (state: AuthState) => state.status === 'authenticated';

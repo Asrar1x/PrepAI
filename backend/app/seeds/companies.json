@@ -1,0 +1,202 @@
+[
+  {
+    "slug": "tcs",
+    "name": "TCS",
+    "industry": "IT Services",
+    "hiring_signal": "active",
+    "salary_range": "₹3.5L - ₹11L",
+    "assessment_summary": "TCS NQT — 3 sections: Verbal, Quantitative Aptitude, Coding. 190 min total. Negative marking on coding only.",
+    "sections": [
+      {"name": "Verbal Ability", "questions": 25, "duration_minutes": 25, "topics": ["grammar", "vocabulary", "reading comprehension"]},
+      {"name": "Quantitative Aptitude", "questions": 25, "duration_minutes": 40, "topics": ["numbers", "algebra", "geometry", "data interpretation"]},
+      {"name": "Coding", "questions": 2, "duration_minutes": 60, "topics": ["arrays", "strings", "DP", "graphs"]},
+      {"name": "Coding MCQs", "questions": 10, "duration_minutes": 15, "topics": ["output prediction", "complexity"]}
+    ],
+    "timings": {"total_minutes": 190, "sectional_cutoff": true},
+    "distribution": {"easy": 0.4, "medium": 0.4, "hard": 0.2},
+    "negative_marking": {"verbal": 0, "quant": 0, "coding_mcq": 0.25, "coding": 0}
+  },
+  {
+    "slug": "infosys",
+    "name": "Infosys",
+    "industry": "IT Services",
+    "hiring_signal": "active",
+    "salary_range": "₹6.25L - ₹21L",
+    "assessment_summary": "Infosys Online Test (varies by track) — HackerRank platform. SP track has additional advanced rounds.",
+    "sections": [
+      {"name": "Logical Reasoning", "questions": 10, "duration_minutes": 25, "topics": ["puzzles", "series", "coding-decoding"]},
+      {"name": "Quantitative Aptitude", "questions": 10, "duration_minutes": 25, "topics": ["numbers", "probability", "mensuration"]},
+      {"name": "Verbal Ability", "questions": 10, "duration_minutes": 20, "topics": ["grammar", "vocabulary"]},
+      {"name": "Pseudo-code / Programming", "questions": 5, "duration_minutes": 20, "topics": ["flow", "loops", "logic"]},
+      {"name": "Coding", "questions": 2, "duration_minutes": 45, "topics": ["arrays", "strings", "DP"]}
+    ],
+    "timings": {"total_minutes": 135, "sectional_cutoff": true},
+    "distribution": {"easy": 0.45, "medium": 0.35, "hard": 0.2},
+    "negative_marking": {"all": 0.25}
+  },
+  {
+    "slug": "wipro",
+    "name": "Wipro",
+    "industry": "IT Services",
+    "hiring_signal": "active",
+    "salary_range": "₹3.5L - ₹11L",
+    "assessment_summary": "Wipro NLTH — AMCAT-based platform. Aptitude + Coding + Written English.",
+    "sections": [
+      {"name": "Quantitative Aptitude", "questions": 16, "duration_minutes": 25, "topics": ["numbers", "algebra"]},
+      {"name": "Logical Reasoning", "questions": 14, "duration_minutes": 25, "topics": ["series", "puzzles"]},
+      {"name": "Verbal", "questions": 18, "duration_minutes": 20, "topics": ["grammar", "vocab"]},
+      {"name": "Coding", "questions": 2, "duration_minutes": 45, "topics": ["strings", "DP"]}
+    ],
+    "timings": {"total_minutes": 115, "sectional_cutoff": true},
+    "distribution": {"easy": 0.5, "medium": 0.35, "hard": 0.15},
+    "negative_marking": {"all": 0}
+  },
+  {
+    "slug": "zoho",
+    "name": "Zoho",
+    "industry": "SaaS",
+    "hiring_signal": "active",
+    "salary_range": "₹6L - ₹14L",
+    "assessment_summary": "Zoho Off-Campus 5-round process: Aptitude → Coding → Programming → Project → HR.",
+    "sections": [
+      {"name": "Aptitude", "questions": 20, "duration_minutes": 30, "topics": ["quant", "logical", "verbal"]},
+      {"name": "Coding Round 1", "questions": 5, "duration_minutes": 60, "topics": ["arrays", "strings", "logic"]},
+      {"name": "Programming Round 2", "questions": 3, "duration_minutes": 90, "topics": ["DSA", "implementations"]},
+      {"name": "Project discussion", "questions": 0, "duration_minutes": 30, "topics": ["deep dive on your project"]},
+      {"name": "HR round", "questions": 0, "duration_minutes": 30, "topics": ["behavioral", "salary"]}
+    ],
+    "timings": {"total_minutes": 240, "sectional_cutoff": true},
+    "distribution": {"easy": 0.4, "medium": 0.45, "hard": 0.15},
+    "negative_marking": {"aptitude": 0.25}
+  },
+  {
+    "slug": "cognizant",
+    "name": "Cognizant",
+    "industry": "IT Services",
+    "hiring_signal": "active",
+    "salary_range": "₹4L - ₹9L",
+    "assessment_summary": "Cognizant GenC/GenC Next — AMCAT-based. Two tracks: GenC and GenC Next with higher stipend.",
+    "sections": [
+      {"name": "Quantitative", "questions": 16, "duration_minutes": 25, "topics": ["numbers", "algebra"]},
+      {"name": "Logical", "questions": 14, "duration_minutes": 25, "topics": ["puzzles", "series"]},
+      {"name": "Verbal", "questions": 18, "duration_minutes": 20, "topics": ["grammar", "vocab"]},
+      {"name": "Coding", "questions": 2, "duration_minutes": 60, "topics": ["DSA"]}
+    ],
+    "timings": {"total_minutes": 130, "sectional_cutoff": true},
+    "distribution": {"easy": 0.45, "medium": 0.4, "hard": 0.15},
+    "negative_marking": {"aptitude": 0.25, "coding": 0}
+  },
+  {
+    "slug": "capgemini",
+    "name": "Capgemini",
+    "industry": "IT Services",
+    "hiring_signal": "active",
+    "salary_range": "₹4L - ₹8L",
+    "assessment_summary": "Capgemini PseudoCode + Coding test. Two slots, sectional cutoffs.",
+    "sections": [
+      {"name": "Pseudo Code", "questions": 20, "duration_minutes": 30, "topics": ["logic", "flow"]},
+      {"name": "English", "questions": 30, "duration_minutes": 30, "topics": ["comprehension", "grammar"]},
+      {"name": "Coding", "questions": 2, "duration_minutes": 45, "topics": ["strings", "DP"]}
+    ],
+    "timings": {"total_minutes": 105, "sectional_cutoff": true},
+    "distribution": {"easy": 0.5, "medium": 0.35, "hard": 0.15},
+    "negative_marking": {"pseudo": 0.5}
+  },
+  {
+    "slug": "accenture",
+    "name": "Accenture",
+    "industry": "Consulting/IT",
+    "hiring_signal": "active",
+    "salary_range": "₹4.5L - ₹11L",
+    "assessment_summary": "Accenture Cognitive + Technical + Coding. Genpact-style sectional tests.",
+    "sections": [
+      {"name": "Cognitive", "questions": 30, "duration_minutes": 35, "topics": ["quant", "logical", "verbal"]},
+      {"name": "Technical", "questions": 20, "duration_minutes": 30, "topics": ["CS fundamentals", "coding"]},
+      {"name": "Coding", "questions": 2, "duration_minutes": 45, "topics": ["DSA"]}
+    ],
+    "timings": {"total_minutes": 110, "sectional_cutoff": true},
+    "distribution": {"easy": 0.45, "medium": 0.4, "hard": 0.15},
+    "negative_marking": {"all": 0.5}
+  },
+  {
+    "slug": "amazon",
+    "name": "Amazon",
+    "industry": "Product",
+    "hiring_signal": "active",
+    "salary_range": "₹12L - ₹45L",
+    "assessment_summary": "Amazon OA — 2 coding + 1 workstyles + 1 logical. Followed by 4-5 interview rounds.",
+    "sections": [
+      {"name": "Coding 1", "questions": 1, "duration_minutes": 50, "topics": ["DSA", "hash tables"]},
+      {"name": "Coding 2", "questions": 1, "duration_minutes": 70, "topics": ["graphs", "DP", "trees"]},
+      {"name": "Workstyles", "questions": 15, "duration_minutes": 20, "topics": ["behavioral scenarios"]},
+      {"name": "Logical", "questions": 20, "duration_minutes": 30, "topics": ["logical reasoning", "debugging"]}
+    ],
+    "timings": {"total_minutes": 170, "sectional_cutoff": false},
+    "distribution": {"easy": 0.2, "medium": 0.5, "hard": 0.3},
+    "negative_marking": {"workstyles": 0.25}
+  },
+  {
+    "slug": "flipkart",
+    "name": "Flipkart",
+    "industry": "Product",
+    "hiring_signal": "active",
+    "salary_range": "₹15L - ₹50L",
+    "assessment_summary": "Flipkart OA on HackerRank — 1 coding + 1 debugging + MCQ. Followed by Machine Coding + Tech rounds.",
+    "sections": [
+      {"name": "Coding 1", "questions": 1, "duration_minutes": 60, "topics": ["DSA", "strings"]},
+      {"name": "Coding 2 (debug)", "questions": 1, "duration_minutes": 30, "topics": ["find bug", "complexity"]},
+      {"name": "MCQ", "questions": 10, "duration_minutes": 20, "topics": ["CS fundamentals"]}
+    ],
+    "timings": {"total_minutes": 110, "sectional_cutoff": false},
+    "distribution": {"easy": 0.2, "medium": 0.4, "hard": 0.4},
+    "negative_marking": {"mcq": 0.5}
+  },
+  {
+    "slug": "microsoft",
+    "name": "Microsoft",
+    "industry": "Product",
+    "hiring_signal": "active",
+    "salary_range": "₹18L - ₹60L",
+    "assessment_summary": "Microsoft OA — 1-2 coding + 1 logic. Interviews include design + coding + leadership.",
+    "sections": [
+      {"name": "Coding 1", "questions": 1, "duration_minutes": 60, "topics": ["DSA"]},
+      {"name": "Coding 2", "questions": 1, "duration_minutes": 60, "topics": ["DSA", "DP"]},
+      {"name": "Logic", "questions": 10, "duration_minutes": 25, "topics": ["puzzles", "math"]}
+    ],
+    "timings": {"total_minutes": 145, "sectional_cutoff": false},
+    "distribution": {"easy": 0.1, "medium": 0.4, "hard": 0.5},
+    "negative_marking": {"all": 0}
+  },
+  {
+    "slug": "google",
+    "name": "Google",
+    "industry": "Product",
+    "hiring_signal": "active",
+    "salary_range": "₹25L - ₹80L",
+    "assessment_summary": "Google Online Challenge for India — invitation-based. 2 coding + workstyles.",
+    "sections": [
+      {"name": "Coding 1", "questions": 1, "duration_minutes": 45, "topics": ["DSA"]},
+      {"name": "Coding 2", "questions": 1, "duration_minutes": 60, "topics": ["DSA", "graphs"]},
+      {"name": "Workstyles", "questions": 8, "duration_minutes": 15, "topics": ["behavioral"]}
+    ],
+    "timings": {"total_minutes": 120, "sectional_cutoff": false},
+    "distribution": {"easy": 0.1, "medium": 0.3, "hard": 0.6},
+    "negative_marking": {"all": 0}
+  },
+  {
+    "slug": "oracle",
+    "name": "Oracle",
+    "industry": "Product",
+    "hiring_signal": "active",
+    "salary_range": "₹10L - ₹30L",
+    "assessment_summary": "Oracle Hiring Challenge — 1 coding + aptitude + 2 SQL.",
+    "sections": [
+      {"name": "Coding", "questions": 1, "duration_minutes": 60, "topics": ["DSA"]},
+      {"name": "Aptitude", "questions": 25, "duration_minutes": 35, "topics": ["quant", "logical"]},
+      {"name": "SQL", "questions": 2, "duration_minutes": 30, "topics": ["joins", "subqueries"]}
+    ],
+    "timings": {"total_minutes": 125, "sectional_cutoff": true},
+    "distribution": {"easy": 0.3, "medium": 0.4, "hard": 0.3},
+    "negative_marking": {"aptitude": 0.25}
+  }
+]
