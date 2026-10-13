@@ -30,7 +30,7 @@ function buildItems(weaknesses, { days = 7 } = {}) {
         : concepts.length
           ? `Study ${concepts.join(', ')} for ${w.topic}, then explain each out loud in under 2 minutes.`
           : `Answer 2 ${w.topic} mock-interview questions out loud and compare with the reference answers in your report.`,
-      reason: w.score === null || w.score === undefined ? 'Not practised yet' : `Current score ${Math.round(w.score)}%`,
+      reason: w.score === null || w.score === undefined ? 'Not practiced yet' : `Current score ${Math.round(w.score)}%`,
       durationMinutes: isAptitude ? 20 : 30,
       priority: idx < 2 ? 'High' : 'Normal',
       dueDate: new Date(Date.now() + Math.min(days, idx + 1) * DAY),

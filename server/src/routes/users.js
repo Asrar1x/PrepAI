@@ -477,7 +477,7 @@ router.get('/me/gamification', protect, async (req, res) => {
 
     const badges = [
       { id: 'first-mock', title: 'First Voice Mock', desc: 'Complete your first mock interview.', icon: 'mic', unlocked: completedInterviews >= 1 },
-      { id: 'streak-7', title: '7-Day Streak', desc: 'Practise on 7 consecutive days.', icon: 'flame', unlocked: (user.longestStreak || 0) >= 7 },
+      { id: 'streak-7', title: '7-Day Streak', desc: 'Practice on 7 consecutive days.', icon: 'flame', unlocked: (user.longestStreak || 0) >= 7 },
       { id: 'aptitude-ace', title: 'Aptitude Ace', desc: 'Score 90%+ in an aptitude test.', icon: 'zap', unlocked: Boolean(bestAptitude && bestAptitude.score >= 90) },
       { id: 'star-champion', title: 'STAR Champion', desc: 'Reach 85%+ STAR compliance in an interview.', icon: 'star', unlocked: Boolean(bestStar) },
       { id: 'ats-90', title: 'ATS 90+ Club', desc: 'Score 90+ on the resume ATS scan.', icon: 'file', unlocked: Boolean(bestAts && bestAts.atsScore >= 90) },

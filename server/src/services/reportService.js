@@ -318,7 +318,7 @@ async function buildReportPayload(session, turns, evaluations) {
     byTopic.set(r.topic, t);
   });
   const weakTopics = Array.from(byTopic.values())
-    .map(t => ({ topic: t.topic, score: Math.round(mean(t.scores)), reason: t.missing[0] ? `Missing: ${Array.from(new Set(t.missing)).slice(0, 3).join(', ')}` : 'Below target score', recommendedAction: `Practise ${t.topic} questions and review the reference answers.`, priority: mean(t.scores) < 50 ? 'High' : 'Medium', missingConcepts: Array.from(new Set(t.missing)).slice(0, 4) }))
+    .map(t => ({ topic: t.topic, score: Math.round(mean(t.scores)), reason: t.missing[0] ? `Missing: ${Array.from(new Set(t.missing)).slice(0, 3).join(', ')}` : 'Below target score', recommendedAction: `Practice ${t.topic} questions and review the reference answers.`, priority: mean(t.scores) < 50 ? 'High' : 'Medium', missingConcepts: Array.from(new Set(t.missing)).slice(0, 4) }))
     .filter(t => t.score < 70)
     .sort((a, b) => a.score - b.score);
 

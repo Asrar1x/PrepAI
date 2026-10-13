@@ -342,7 +342,7 @@ router.post('/skill-gap/analyze', (req, res) => {
   const planTopics = [
     ...weaknesses.flatMap(s => [
       { topic: `${s}: fundamentals`, description: `Learn the core concepts of ${s} and solve 5 beginner problems.`, minutes: 60 },
-      { topic: `${s}: interview practice`, description: `Practise common ${role.title} interview questions on ${s} and explain answers out loud.`, minutes: 45 }
+      { topic: `${s}: interview practice`, description: `Practice common ${role.title} interview questions on ${s} and explain answers out loud.`, minutes: 45 }
     ]),
     ...okay.map(s => ({ topic: `${s}: revision`, description: `Revise ${s} and attempt 3 medium-difficulty problems.`, minutes: 40 }))
   ];

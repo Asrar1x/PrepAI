@@ -533,7 +533,7 @@ async function buildExportTable(type, batchFilter) {
     const rows = await computeCompanyReadiness(await computeAllReadiness());
     return {
       title: 'Company Readiness',
-      columns: ['Company', 'Students Practised', 'Interview Ready', 'Readiness %', 'Avg Mock Score', 'Trend', 'Visiting Date'],
+      columns: ['Company', 'Students Practiced', 'Interview Ready', 'Readiness %', 'Avg Mock Score', 'Trend', 'Visiting Date'],
       rows: rows.map(r => [r.companyName, r.eligibleStudentsCount, r.interviewReadyCount, r.readinessPercentage, r.averageMockScore, r.trend, r.visitingDate || ''])
     };
   }

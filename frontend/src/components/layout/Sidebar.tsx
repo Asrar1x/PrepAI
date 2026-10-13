@@ -128,7 +128,7 @@ export const Sidebar: React.FC = () => {
             </div>
             <div>
               <div className="text-xs font-bold text-orange-300">{user?.streakCount ?? 0} Day Streak</div>
-              <div className="text-[11px] text-gray-400">Practise a little every day</div>
+              <div className="text-[11px] text-gray-400">Practice a little every day</div>
             </div>
           </div>
         </div>

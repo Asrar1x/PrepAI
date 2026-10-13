@@ -353,9 +353,9 @@ async function buildDashboard(user) {
     aiDailyDigest: hasActivity
       ? {
           headline: `Placement readiness is ${current.score}% across ${interviews.length} interview(s) and ${aptitudes.length} aptitude test(s).`,
-          recommendedAction: weakest ? `Focus today on ${weakest.topic} (currently ${weakest.score}%).` : 'Keep practising to build topic-level insights.',
+          recommendedAction: weakest ? `Focus today on ${weakest.topic} (currently ${weakest.score}%).` : 'Keep practicing to build topic-level insights.',
           weakestTopic: weakest ? weakest.topic : '',
-          streakMotivation: `${user.currentStreak || 0}-day practice streak. Practise today to keep it going.`
+          streakMotivation: `${user.currentStreak || 0}-day practice streak. Practice today to keep it going.`
         }
       : {
           headline: `Your readiness score appears after your first test or mock interview.`,

@@ -6,7 +6,7 @@ type Meta = { title: string; description: string };
 const SITE = 'PrepAI';
 const DEFAULT_META: Meta = {
   title: 'Placement Preparation',
-  description: 'Practise placement interviews, company-pattern aptitude tests and resume screening. Every score shows the evidence it is based on.'
+  description: 'Practice placement interviews, company-pattern aptitude tests and resume screening. Every score shows the evidence it is based on.'
 };
 
 // First matching pattern wins; order specific paths before general ones

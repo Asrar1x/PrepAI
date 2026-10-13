@@ -59,7 +59,7 @@ export const Landing: React.FC = () => {
           <div className="max-w-6xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
             <div className="lg:col-span-7">
               <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-semibold text-white">
-                Practise your placement interview before the real one.
+                Practice your placement interview before the real one.
               </h1>
               <p className="mt-6 text-lg text-[#A8A8A2] max-w-xl leading-relaxed">
                 Mock interviews you answer out loud, aptitude tests in each company's format, and a
@@ -133,7 +133,7 @@ export const Landing: React.FC = () => {
         {/* What is inside */}
         <section className="py-20 md:py-24 bg-[#141413] border-y border-[#353532]">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
-            <h2 className="text-3xl sm:text-4xl font-semibold text-white max-w-xl">What you can practise</h2>
+            <h2 className="text-3xl sm:text-4xl font-semibold text-white max-w-xl">What you can practice</h2>
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 border-t border-[#353532]">
               {MODULES.map((m, i) => (
                 <Link
