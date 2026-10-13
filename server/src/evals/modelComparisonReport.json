@@ -1,0 +1,137 @@
+{
+  "datasetId": "prepai-eval-120-v1",
+  "evaluatorVersion": "eval-v4",
+  "finishedAt": "2026-10-07T01:01:14.404Z",
+  "comparison": [
+    {
+      "runId": "93a624a8280d",
+      "model": "qwen2.5-coder:7b",
+      "results": {
+        "fusion": {
+          "items": 120,
+          "classified": 120,
+          "accuracy3": 0.8,
+          "macroF1_3": 0.742,
+          "accuracy5": 0.725,
+          "macroF1_5": 0.69,
+          "mae": 14.73,
+          "pearsonR": 0.916,
+          "inRangeRate": 0.333,
+          "falsePositiveRate": 0,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 25416,
+          "latencyP95Ms": 40559,
+          "structuredOutputFailureRate": 0,
+          "conflictRate": 0.142,
+          "reviewRequiredRate": 0,
+          "consistency": {
+            "sampleSize": 10,
+            "meanAbsScoreDiff": 2.1,
+            "classAgreement": 1
+          }
+        },
+        "llm_only": {
+          "items": 120,
+          "classified": 120,
+          "accuracy3": 0.8,
+          "macroF1_3": 0.742,
+          "accuracy5": 0.725,
+          "macroF1_5": 0.69,
+          "mae": 16.07,
+          "pearsonR": 0.916,
+          "inRangeRate": 0.242,
+          "falsePositiveRate": 0,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 25415,
+          "latencyP95Ms": 40559,
+          "structuredOutputFailureRate": 0,
+          "conflictRate": null,
+          "reviewRequiredRate": null
+        },
+        "laya_only": {
+          "items": 120,
+          "classified": 116,
+          "accuracy3": 0.431,
+          "macroF1_3": 0.397,
+          "accuracy5": 0.397,
+          "macroF1_5": 0.229,
+          "mae": null,
+          "pearsonR": null,
+          "inRangeRate": null,
+          "falsePositiveRate": 0.456,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 13959,
+          "latencyP95Ms": 17157,
+          "structuredOutputFailureRate": 0.033,
+          "conflictRate": null,
+          "reviewRequiredRate": null
+        }
+      }
+    },
+    {
+      "runId": "7e1a6bcb0346",
+      "model": "qwen3:8b",
+      "results": {
+        "fusion": {
+          "items": 120,
+          "classified": 120,
+          "accuracy3": 0.858,
+          "macroF1_3": 0.816,
+          "accuracy5": 0.742,
+          "macroF1_5": 0.654,
+          "mae": 16.05,
+          "pearsonR": 0.945,
+          "inRangeRate": 0.258,
+          "falsePositiveRate": 0,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 36062,
+          "latencyP95Ms": 45045,
+          "structuredOutputFailureRate": 0,
+          "conflictRate": 0.175,
+          "reviewRequiredRate": 0,
+          "consistency": {
+            "sampleSize": 10,
+            "meanAbsScoreDiff": 0.1,
+            "classAgreement": 1
+          }
+        },
+        "llm_only": {
+          "items": 120,
+          "classified": 120,
+          "accuracy3": 0.858,
+          "macroF1_3": 0.816,
+          "accuracy5": 0.742,
+          "macroF1_5": 0.654,
+          "mae": 17.59,
+          "pearsonR": 0.944,
+          "inRangeRate": 0.15,
+          "falsePositiveRate": 0,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 36062,
+          "latencyP95Ms": 45044,
+          "structuredOutputFailureRate": 0,
+          "conflictRate": null,
+          "reviewRequiredRate": null
+        },
+        "laya_only": {
+          "items": 120,
+          "classified": 118,
+          "accuracy3": 0.432,
+          "macroF1_3": 0.4,
+          "accuracy5": 0.398,
+          "macroF1_5": 0.253,
+          "mae": null,
+          "pearsonR": null,
+          "inRangeRate": null,
+          "falsePositiveRate": 0.448,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 12631,
+          "latencyP95Ms": 15145,
+          "structuredOutputFailureRate": 0.017,
+          "conflictRate": null,
+          "reviewRequiredRate": null
+        }
+      }
+    }
+  ]
+}

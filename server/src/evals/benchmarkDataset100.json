@@ -1,0 +1,2717 @@
+[
+  {
+    "id": "eval-001",
+    "category": "excellent_expert",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite B-tree indexes order rows hierarchically based on the leftmost prefix rule. If a query filters on created_at without specifying tenant_id, the database engine cannot traverse the root-to-leaf search tree efficiently and must fall back from an O(log N) index seek to an O(N) index scan, degrading query throughput significantly.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-002",
+    "category": "excellent_expert",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "To handle high throughput and avoid hitting the primary database, we deploy a distributed Redis cluster using consistent hashing. To prevent cache stampede when keys expire, we implement probabilistic early expiration or distributed locking via Redlock with an LRU eviction policy.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-003",
+    "category": "excellent_expert",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state, causing lost updates. For a bank balance, we resolve this either via database-level pessimistic row locking using 'SELECT ... FOR UPDATE' inside a transactional boundary, or via optimistic concurrency control using a version column, ensuring atomic rollback on concurrent version mismatch.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-004",
+    "category": "excellent_expert",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "A hash map uses a hash function to map keys to bucket indices in O(1) average time. When collisions occur, separate chaining stores entries in buckets; in Java 8+, buckets treeify into Red-Black trees when size exceeds 8, improving worst-case search from O(N) to O(log N).",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-005",
+    "category": "excellent_expert",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "A process is an isolated execution environment with dedicated virtual address space and PCB, whereas threads share the heap and code segment within a process. An OS context switch saves CPU register states and program counters to the PCB/TCB; inter-process switching incurs a TLB cache flush, whereas intra-process thread switching is significantly lighter.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-006",
+    "category": "excellent_expert",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "We maintain cross-service consistency using the Saga pattern with compensating transactions. In choreography, each service publishes domain events via Kafka; if an inventory reservation fails, compensating refund events are triggered asynchronously to enforce eventual consistency.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-007",
+    "category": "excellent_expert",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "In composite indexing, B-trees structure data by the exact column sequence defined in the DDL. Omitting the leading column prevents binary tree seeks, forcing sequential index page scans. Covering indexes can mitigate this by including all projected columns in the index leaf nodes.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-008",
+    "category": "excellent_expert",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "We build a resilient caching architecture using Redis with write-behind persistence. To mitigate stampedes, we apply probabilistic early expiration (XFetch algorithm) combined with background thread refreshes, keeping cache hit ratios above 98% with bounded memory eviction.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-009",
+    "category": "excellent_expert",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "To prevent concurrent balance deductions, we enforce serializable transaction isolation or optimistic locking with a version column (UPDATE account SET balance = balance - amount, version = version + 1 WHERE id = ? AND version = ?). If zero rows update, we retry or abort atomically.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-010",
+    "category": "excellent_expert",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Hash map collision resolution relies on deterministic hashing with prime modulus or power-of-two masking. Under adversarial hash collision attacks, open addressing degrades to O(N) cluster scans, while balanced tree chaining maintains deterministic O(log N) lookup bounds.",
+    "expertLabel": "Pass",
+    "expertScore": 94,
+    "acceptableRange": [
+      88,
+      98
+    ]
+  },
+  {
+    "id": "eval-011",
+    "category": "correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite indexes sort by the first column then subsequent columns. When you query without the first column, the database cannot use the index properly and has to scan the whole table or index, making the query much slower.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-012",
+    "category": "correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "We can use Redis as an in-memory cache in front of our database. To prevent cache stampedes, we set up mutex locks so only one request queries the database while others wait, and we use an LRU eviction policy.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-013",
+    "category": "correct",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "A race condition is when two threads update the balance at the same time and overwrite each other. We can prevent this by using database locks with SELECT FOR UPDATE or using synchronized blocks and atomic variables.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-014",
+    "category": "correct",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "A hash map maps keys to array buckets using hashing. If two keys have the same hash, it uses chaining with a linked list. The worst case is O(N) when all keys hash to the same bucket.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-015",
+    "category": "correct",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "A process has its own memory space while threads share memory in the same process. Context switching saves the registers and state to the PCB and switches to the new process, which has CPU overhead.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-016",
+    "category": "correct",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "We use the Saga pattern where each microservice performs a local transaction and emits an event. If a step fails, compensating actions are executed to roll back previous steps and ensure eventual consistency.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-017",
+    "category": "correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite indexes sort by the first column then subsequent columns. When you query without the first column, the database cannot use the index properly and has to scan the whole table or index, making the query much slower.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-018",
+    "category": "correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "We can use Redis as an in-memory cache in front of our database. To prevent cache stampedes, we set up mutex locks so only one request queries the database while others wait, and we use an LRU eviction policy.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-019",
+    "category": "correct",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "A race condition is when two threads update the balance at the same time and overwrite each other. We can prevent this by using database locks with SELECT FOR UPDATE or using synchronized blocks and atomic variables.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-020",
+    "category": "correct",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "A hash map maps keys to array buckets using hashing. If two keys have the same hash, it uses chaining with a linked list. The worst case is O(N) when all keys hash to the same bucket.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-021",
+    "category": "correct",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "A process has its own memory space while threads share memory in the same process. Context switching saves the registers and state to the PCB and switches to the new process, which has CPU overhead.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-022",
+    "category": "correct",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "We use the Saga pattern where each microservice performs a local transaction and emits an event. If a step fails, compensating actions are executed to roll back previous steps and ensure eventual consistency.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-023",
+    "category": "correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite indexes sort by the first column then subsequent columns. When you query without the first column, the database cannot use the index properly and has to scan the whole table or index, making the query much slower.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-024",
+    "category": "correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "We can use Redis as an in-memory cache in front of our database. To prevent cache stampedes, we set up mutex locks so only one request queries the database while others wait, and we use an LRU eviction policy.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-025",
+    "category": "correct",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "A race condition is when two threads update the balance at the same time and overwrite each other. We can prevent this by using database locks with SELECT FOR UPDATE or using synchronized blocks and atomic variables.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-026",
+    "category": "correct",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "A hash map maps keys to array buckets using hashing. If two keys have the same hash, it uses chaining with a linked list. The worst case is O(N) when all keys hash to the same bucket.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-027",
+    "category": "correct",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "A process has its own memory space while threads share memory in the same process. Context switching saves the registers and state to the PCB and switches to the new process, which has CPU overhead.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-028",
+    "category": "correct",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "We use the Saga pattern where each microservice performs a local transaction and emits an event. If a step fails, compensating actions are executed to roll back previous steps and ensure eventual consistency.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-029",
+    "category": "correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite indexes sort by the first column then subsequent columns. When you query without the first column, the database cannot use the index properly and has to scan the whole table or index, making the query much slower.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-030",
+    "category": "correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "We can use Redis as an in-memory cache in front of our database. To prevent cache stampedes, we set up mutex locks so only one request queries the database while others wait, and we use an LRU eviction policy.",
+    "expertLabel": "Pass",
+    "expertScore": 82,
+    "acceptableRange": [
+      75,
+      88
+    ]
+  },
+  {
+    "id": "eval-031",
+    "category": "partially_correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite indexes have multiple columns. If you query using the columns in your index, it runs much faster because the database can find rows quicker.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-032",
+    "category": "partially_correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "You can put Redis in front of the API to store frequent responses so the database doesn't get hit as much. That will improve response times.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-033",
+    "category": "partially_correct",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "A race condition happens when two users withdraw money at the same time. You should use locks or mutexes around the balance update so only one person updates it at once.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-034",
+    "category": "partially_correct",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Hash maps use buckets to store values based on hash codes. Collisions happen when two items go to the same slot and they get linked together.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-035",
+    "category": "partially_correct",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "Processes are programs running on the computer and threads are smaller parts inside them that run together to do work faster.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-036",
+    "category": "partially_correct",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "In microservices you use message queues like RabbitMQ to send messages between services so they stay updated eventually.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-037",
+    "category": "partially_correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite indexes have multiple columns. If you query using the columns in your index, it runs much faster because the database can find rows quicker.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-038",
+    "category": "partially_correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "You can put Redis in front of the API to store frequent responses so the database doesn't get hit as much. That will improve response times.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-039",
+    "category": "partially_correct",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "A race condition happens when two users withdraw money at the same time. You should use locks or mutexes around the balance update so only one person updates it at once.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-040",
+    "category": "partially_correct",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Hash maps use buckets to store values based on hash codes. Collisions happen when two items go to the same slot and they get linked together.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-041",
+    "category": "partially_correct",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "Processes are programs running on the computer and threads are smaller parts inside them that run together to do work faster.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-042",
+    "category": "partially_correct",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "In microservices you use message queues like RabbitMQ to send messages between services so they stay updated eventually.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-043",
+    "category": "partially_correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite indexes have multiple columns. If you query using the columns in your index, it runs much faster because the database can find rows quicker.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-044",
+    "category": "partially_correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "You can put Redis in front of the API to store frequent responses so the database doesn't get hit as much. That will improve response times.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-045",
+    "category": "partially_correct",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "A race condition happens when two users withdraw money at the same time. You should use locks or mutexes around the balance update so only one person updates it at once.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-046",
+    "category": "partially_correct",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Hash maps use buckets to store values based on hash codes. Collisions happen when two items go to the same slot and they get linked together.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-047",
+    "category": "partially_correct",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "Processes are programs running on the computer and threads are smaller parts inside them that run together to do work faster.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-048",
+    "category": "partially_correct",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "In microservices you use message queues like RabbitMQ to send messages between services so they stay updated eventually.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-049",
+    "category": "partially_correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Composite indexes have multiple columns. If you query using the columns in your index, it runs much faster because the database can find rows quicker.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-050",
+    "category": "partially_correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "You can put Redis in front of the API to store frequent responses so the database doesn't get hit as much. That will improve response times.",
+    "expertLabel": "Moderate",
+    "expertScore": 58,
+    "acceptableRange": [
+      48,
+      68
+    ]
+  },
+  {
+    "id": "eval-051",
+    "category": "incorrect",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "B-tree indexes maintain a flat hash map of all columns, so column order in the index does not matter and querying any column is always guaranteed O(1).",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-052",
+    "category": "incorrect",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "To handle high throughput and cache stampedes, you should disable cache expiration completely and store all database rows in server memory indefinitely without eviction.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-053",
+    "category": "incorrect",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "Race conditions only happen in single-threaded languages like JavaScript, so in multi-threaded Java or Go, thread memory is automatically isolated and race conditions cannot occur.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-054",
+    "category": "incorrect",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Hash maps have worst-case lookup time of O(1) guaranteed by computer hardware, and collisions are automatically resolved by the compiler.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-055",
+    "category": "incorrect",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "Processes and threads are identical concepts in Linux kernels, and context switching does not involve saving CPU registers or memory switching.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-056",
+    "category": "incorrect",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "In microservices you must always use two-phase commit distributed transactions across all HTTP endpoints to guarantee instant ACID consistency.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-057",
+    "category": "incorrect",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "B-tree indexes maintain a flat hash map of all columns, so column order in the index does not matter and querying any column is always guaranteed O(1).",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-058",
+    "category": "incorrect",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "To handle high throughput and cache stampedes, you should disable cache expiration completely and store all database rows in server memory indefinitely without eviction.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-059",
+    "category": "incorrect",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "Race conditions only happen in single-threaded languages like JavaScript, so in multi-threaded Java or Go, thread memory is automatically isolated and race conditions cannot occur.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-060",
+    "category": "incorrect",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Hash maps have worst-case lookup time of O(1) guaranteed by computer hardware, and collisions are automatically resolved by the compiler.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-061",
+    "category": "incorrect",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "Processes and threads are identical concepts in Linux kernels, and context switching does not involve saving CPU registers or memory switching.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-062",
+    "category": "incorrect",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "In microservices you must always use two-phase commit distributed transactions across all HTTP endpoints to guarantee instant ACID consistency.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-063",
+    "category": "incorrect",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "B-tree indexes maintain a flat hash map of all columns, so column order in the index does not matter and querying any column is always guaranteed O(1).",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-064",
+    "category": "incorrect",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "To handle high throughput and cache stampedes, you should disable cache expiration completely and store all database rows in server memory indefinitely without eviction.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-065",
+    "category": "incorrect",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "Race conditions only happen in single-threaded languages like JavaScript, so in multi-threaded Java or Go, thread memory is automatically isolated and race conditions cannot occur.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-066",
+    "category": "incorrect",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Hash maps have worst-case lookup time of O(1) guaranteed by computer hardware, and collisions are automatically resolved by the compiler.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-067",
+    "category": "incorrect",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "Processes and threads are identical concepts in Linux kernels, and context switching does not involve saving CPU registers or memory switching.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-068",
+    "category": "incorrect",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "In microservices you must always use two-phase commit distributed transactions across all HTTP endpoints to guarantee instant ACID consistency.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-069",
+    "category": "incorrect",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "B-tree indexes maintain a flat hash map of all columns, so column order in the index does not matter and querying any column is always guaranteed O(1).",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-070",
+    "category": "incorrect",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "To handle high throughput and cache stampedes, you should disable cache expiration completely and store all database rows in server memory indefinitely without eviction.",
+    "expertLabel": "Fail",
+    "expertScore": 28,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-071",
+    "category": "irrelevant",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "My final year college project was a machine learning model for image classification using PyTorch.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-072",
+    "category": "irrelevant",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "I have experience with Git, Docker, and GitHub Actions CI/CD pipelines for web deployment.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-073",
+    "category": "irrelevant",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "I am very interested in web development and have built websites using HTML, CSS, and Bootstrap.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-074",
+    "category": "irrelevant",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "In my previous internship I worked on writing unit tests and fixing frontend CSS bugs.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-075",
+    "category": "irrelevant",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "I know React, Redux, and Tailwind CSS and have created responsive portfolio websites.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-076",
+    "category": "irrelevant",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "I participated in college hackathons and won second prize for an IoT smart home application.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-077",
+    "category": "irrelevant",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "I am familiar with Agile methodology and daily standup scrum meetings.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-078",
+    "category": "irrelevant",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "I enjoy collaborating with teammates and solving complex problems with high enthusiasm.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-079",
+    "category": "irrelevant",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "I have prepared well for this interview and am excited about joining your engineering team.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-080",
+    "category": "irrelevant",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "My favorite programming language is Python because it has clean syntax and rich libraries.",
+    "expertLabel": "Fail",
+    "expertScore": 16,
+    "acceptableRange": [
+      5,
+      28
+    ]
+  },
+  {
+    "id": "eval-081",
+    "category": "vague_evasive",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "yes we handled caching and it worked fine.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-082",
+    "category": "vague_evasive",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "indexes speed up sql queries.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-083",
+    "category": "vague_evasive",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "use mutex lock.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-084",
+    "category": "vague_evasive",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "hash map uses hash function.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-085",
+    "category": "vague_evasive",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "threads are faster than processes.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-086",
+    "category": "vague_evasive",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "we used kafka events.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-087",
+    "category": "vague_evasive",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "i think we can use database optimization.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-088",
+    "category": "vague_evasive",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "it depends on the project requirements.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-089",
+    "category": "vague_evasive",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "we implemented best practices for performance.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-090",
+    "category": "vague_evasive",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "just restart the server if there is high load.",
+    "expertLabel": "Fail",
+    "expertScore": 22,
+    "acceptableRange": [
+      12,
+      35
+    ]
+  },
+  {
+    "id": "eval-091",
+    "category": "hallucinated_claims",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Binary search in a sorted array has an O(N) time complexity because it must examine every element sequentially from left to right.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-092",
+    "category": "hallucinated_claims",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "Redis operates by writing every single cache key directly to spinning hard disk sectors before acknowledging HTTP requests, ensuring zero RAM usage.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-093",
+    "category": "hallucinated_claims",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "Deadlocks in multi-threaded programs are physically impossible because modern Intel CPUs automatically reorder threads into FIFO queues.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-094",
+    "category": "hallucinated_claims",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Composite indexes in SQL databases store full table copies inside RAM cache tables for every column combination.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-095",
+    "category": "hallucinated_claims",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "TCP connections do not perform handshakes and transmit raw UDP datagrams whenever TLS encryption is enabled.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-096",
+    "category": "hallucinated_claims",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "Hash map lookups are always O(N^2) because each key requires scanning the entire memory heap twice.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-097",
+    "category": "hallucinated_claims",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Operating system context switches take zero nanoseconds because threads execute simultaneously on the same hardware transistor.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-098",
+    "category": "hallucinated_claims",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "Saga distributed transactions use quantum entanglement to synchronize SQL databases across different cloud providers instantly.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-099",
+    "category": "hallucinated_claims",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "ACID consistency in databases stands for Asynchronous, Cached, Idempotent, and Distributed storage.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-100",
+    "category": "hallucinated_claims",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "HTTP REST APIs always maintain persistent socket threads for every web user using WebSocket tunneling under HTTP 1.0.",
+    "expertLabel": "Fail",
+    "expertScore": 25,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-101",
+    "category": "short_correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Omitting the leading column prevents O(log N) index seek traversal, causing an O(N) full index or table scan.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-102",
+    "category": "short_correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "Deploy Redis with consistent hashing and use Redlock mutexes or probabilistic early expiration to prevent stampedes.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-103",
+    "category": "short_correct",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "Use database row locks with SELECT FOR UPDATE or optimistic version columns inside transactions.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-104",
+    "category": "short_correct",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Collisions are handled by separate chaining or open addressing; worst case is O(N) when all keys collide into one bucket.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-105",
+    "category": "short_correct",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "Processes have private address spaces while threads share memory; context switching saves registers to PCB/TCB.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-106",
+    "category": "short_correct",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "Implement the Saga pattern with compensating rollback transactions via event streams.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-107",
+    "category": "short_correct",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "Without the leftmost indexed prefix column, the B-tree seek fails and falls back to a full scan.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-108",
+    "category": "short_correct",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "We use Redis cache with TTL and distributed mutex locks to serialize database queries during cold starts.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-109",
+    "category": "short_correct",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "Pessimistic locking with SELECT ... FOR UPDATE ensures mutual exclusion on the shared bank balance.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-110",
+    "category": "short_correct",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Separate chaining puts colliding keys into a linked list or red-black tree, maintaining O(log N) bounds.",
+    "expertLabel": "Pass",
+    "expertScore": 79,
+    "acceptableRange": [
+      72,
+      86
+    ]
+  },
+  {
+    "id": "eval-111",
+    "category": "long_incorrect",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "In modern relational database architectures like MySQL and PostgreSQL, composite B-tree indexes don't actually care about column ordering because the query planner flattens all indexed columns into a unified in-memory hash table. So whether you query by the second column, third column, or no column at all, the engine achieves instantaneous O(1) lookups without any full scans.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-112",
+    "category": "long_incorrect",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "When building an enterprise distributed caching layer with Redis, the industry standard practice is to completely disable TTL and key eviction policies so that all data remains indefinitely in RAM. Cache stampedes are solved by simply letting every incoming web request bypass the cache and query the database directly.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-113",
+    "category": "long_incorrect",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "In multi-threaded web applications, race conditions are strictly an artifact of interpreted programming languages. In compiled environments like Java or Go, thread memory is automatically isolated by CPU hardware registers, making it mathematically impossible for two threads to overwrite the same balance variable.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-114",
+    "category": "long_incorrect",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Hash maps are designed to avoid collisions entirely by using infinite dynamic array allocation algorithms. As a result, hash collisions never happen in production software, and any lookup operation is mathematically guaranteed to execute in O(0) clock cycles.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-115",
+    "category": "long_incorrect",
+    "topic": "Operating Systems & Networking",
+    "question": "What is the difference between a Process and a Thread, and what happens during an operating system context switch?",
+    "expectedConcepts": [
+      "process",
+      "thread",
+      "virtual memory",
+      "address space",
+      "pcb",
+      "tcb",
+      "registers",
+      "cache flush"
+    ],
+    "referenceAnswer": "A process has its own isolated virtual address space, while threads share memory within the same process. Context switching between processes flushes TLB/cache and switches page tables via PCB, whereas thread switching only restores TCB registers.",
+    "candidateAnswer": "Processes and threads share the exact same virtual memory space across the entire Linux operating system. Context switching is merely a cosmetic logging operation performed by systemd that has zero runtime or CPU performance overhead.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-116",
+    "category": "long_incorrect",
+    "topic": "Microservices & Distributed Systems",
+    "question": "How do you maintain data consistency across distributed microservices without distributed two-phase commit transactions?",
+    "expectedConcepts": [
+      "saga pattern",
+      "choreography",
+      "orchestration",
+      "compensating transaction",
+      "eventual consistency",
+      "idempotency"
+    ],
+    "referenceAnswer": "Use the Saga pattern with compensating transactions coordinated either through event choreography (Kafka) or central orchestration, ensuring eventual consistency and idempotency.",
+    "candidateAnswer": "Distributed microservice transactions should always use two-phase commit locks across public HTTP endpoints to ensure instant consistency, because network timeouts and service crashes never occur in modern cloud Kubernetes clusters.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-117",
+    "category": "long_incorrect",
+    "topic": "Database Systems & SQL",
+    "question": "How do composite B-tree indexes work in relational databases, and what happens when you query without the leading indexed column?",
+    "expectedConcepts": [
+      "b-tree",
+      "column sequence",
+      "leftmost prefix",
+      "index seek",
+      "full table scan",
+      "o(log n)"
+    ],
+    "referenceAnswer": "Composite B-tree indexes order rows hierarchically by leading columns. Omitting the leftmost column prevents index seek traversal and forces an O(N) full index scan or table scan.",
+    "candidateAnswer": "A B-tree index in SQL is essentially a linked list where every row points to the next row in sequential disk order. Column sequence has no impact on traversal because the database queries the entire disk block in parallel anyway.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-118",
+    "category": "long_incorrect",
+    "topic": "System Design & Distributed Caching",
+    "question": "How do you design a high-throughput caching layer for a high-volume REST API and mitigate cache stampedes?",
+    "expectedConcepts": [
+      "redis",
+      "ttl",
+      "cache stampede",
+      "mutex",
+      "lru",
+      "write-behind",
+      "probabilistic early expiration"
+    ],
+    "referenceAnswer": "Deploy a distributed Redis cluster using consistent hashing. Prevent cache stampedes with probabilistic early expiration (XFetch) or distributed mutex locking (Redlock).",
+    "candidateAnswer": "To handle 50,000 requests per second, you should route all traffic directly to a single SQLite file hosted on an NFS network drive, because SQLite is faster than Redis and does not require cache invalidation.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-119",
+    "category": "long_incorrect",
+    "topic": "Concurrency & Multithreading",
+    "question": "What is a race condition in a multi-threaded web application, and how do you resolve it when updating a shared bank account balance?",
+    "expectedConcepts": [
+      "race condition",
+      "mutex",
+      "atomic",
+      "optimistic locking",
+      "pessimistic locking",
+      "select for update"
+    ],
+    "referenceAnswer": "A race condition occurs when concurrent threads execute non-atomic read-modify-write cycles on shared state. Resolve with database row locking (SELECT ... FOR UPDATE) or optimistic versioning.",
+    "candidateAnswer": "Bank account balance updates do not require any synchronization or transactions as long as you use asynchronous async/await in Node.js, because Node.js automatically pauses other HTTP requests during arithmetic operations.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  },
+  {
+    "id": "eval-120",
+    "category": "long_incorrect",
+    "topic": "Data Structures & Algorithms",
+    "question": "Explain how a Hash Map handles hash collisions internally and what the worst-case runtime complexity is.",
+    "expectedConcepts": [
+      "hash function",
+      "collision",
+      "chaining",
+      "open addressing",
+      "treeification",
+      "o(1)",
+      "o(n)"
+    ],
+    "referenceAnswer": "Hash collisions are handled via separate chaining (linked lists or red-black trees in Java 8) or open addressing. Worst-case lookup is O(N) or O(log N) if bucket treeified.",
+    "candidateAnswer": "Operating system processes do not store state in PCBs because all process memory is stored directly inside the CPU L1 cache, eliminating context switch overhead completely.",
+    "expertLabel": "Fail",
+    "expertScore": 26,
+    "acceptableRange": [
+      15,
+      38
+    ]
+  }
+]

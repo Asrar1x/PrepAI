@@ -1,0 +1,40 @@
+/* Fonts are bundled from npm (@fontsource), so the app needs no internet connection */
+@import "tailwindcss";
+
+@import "./styles/tokens.css";
+@import "./styles/globals.css";
+
+/* dark: utilities follow PrepAI's theme toggle (html.dark), not the operating system's colour scheme */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+  /* One accent: a muted cobalt. Every former indigo / purple / cyan class maps to it. */
+  --color-brand-50: #EEF3FD;
+  --color-brand-100: #DCE6FB;
+  --color-brand-200: #BBCFF6;
+  --color-brand-300: #8EAFEF;
+  --color-brand-400: #6A93E6;
+  --color-brand-500: #4A76D9;
+  --color-brand-600: #3760C2;
+  --color-brand-700: #2D4E9E;
+  --color-brand-800: #29437F;
+  --color-brand-900: #243963;
+  --color-brand-950: #17223D;
+
+  /* One grey family (warm neutral) instead of Tailwind's blue-tinted gray.
+     500 is lifted so secondary text stays readable on the dark surfaces. */
+  --color-gray-50: #FAFAF8;
+  --color-gray-100: #F2F2EF;
+  --color-gray-200: #E2E2DE;
+  --color-gray-300: #CFCFCA;
+  --color-gray-400: #ADADA7;
+  --color-gray-500: #8E8E88;
+  --color-gray-600: #686863;
+  --color-gray-700: #474743;
+  --color-gray-800: #2E2E2B;
+  --color-gray-900: #1E1E1C;
+  --color-gray-950: #121211;
+}

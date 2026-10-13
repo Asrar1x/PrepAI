@@ -1,0 +1,72 @@
+:root, html.dark {
+  /* Surfaces: warm off-black, each step a little lighter */
+  --bg-primary: #0E0E0D;
+  --bg-secondary: #141413;
+  --bg-elevated: #1E1E1C;
+  --bg-elevated-hover: #262624;
+  --bg-card: #1A1A19;
+  --bg-card-hover: #1E1E1C;
+
+  /* Accent */
+  --accent-primary: #3760C2;
+  --accent-primary-hover: #2D4E9E;
+  --text-accent: #6A93E6;
+
+  /* Semantic */
+  --success: #10B981;
+  --success-dim: rgba(16, 185, 129, 0.15);
+  --warning: #F59E0B;
+  --warning-dim: rgba(245, 158, 11, 0.15);
+  --danger: #EF4444;
+  --danger-dim: rgba(239, 68, 68, 0.15);
+
+  /* Text: secondary and muted are kept at 7:1 and 5:1 against the page */
+  --text-primary: #F2F2EF;
+  --text-secondary: #A8A8A2;
+  --text-muted: #8A8A84;
+
+  /* Borders */
+  --border: #353532;
+  --border-subtle: #252523;
+  --border-focus: #6A93E6;
+
+  --font-sans: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+  /* Shadows: one light source from above, tinted to the surface */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
+}
+
+html.light {
+  --bg-primary: #F7F7F5;
+  --bg-secondary: #FFFFFF;
+  --bg-elevated: #EFEFEC;
+  --bg-elevated-hover: #E6E6E2;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FAFAF8;
+
+  --accent-primary: #3760C2;
+  --accent-primary-hover: #2D4E9E;
+  --text-accent: #2D4E9E;
+
+  --success: #047857;
+  --success-dim: rgba(4, 120, 87, 0.1);
+  --warning: #B45309;
+  --warning-dim: rgba(180, 83, 9, 0.1);
+  --danger: #B91C1C;
+  --danger-dim: rgba(185, 28, 28, 0.1);
+
+  --text-primary: #1A1A19;
+  --text-secondary: #4E4E4A;
+  --text-muted: #62625E;
+
+  --border: #E2E2DE;
+  --border-subtle: #EEEEEB;
+  --border-focus: #3760C2;
+
+  --shadow-sm: 0 1px 2px rgba(26, 26, 25, 0.06);
+  --shadow-md: 0 4px 12px rgba(26, 26, 25, 0.08);
+  --shadow-lg: 0 12px 28px rgba(26, 26, 25, 0.1);
+}

@@ -43,3 +43,13 @@ test-failure.png
 .playwright-mcp/
 *.ps1
 *.png
+
+# Agent customizations
+.agents/
+skills-lock.json
+
+# User Uploads
+server/uploads/*
+!server/uploads/.gitkeep
+
+

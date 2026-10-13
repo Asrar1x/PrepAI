@@ -1,0 +1,254 @@
+@import "tokens.css";
+
+/* ============================================================
+   PrepAI global styles
+   Solid surfaces, one accent, no glow, glass, grain or entrance animation.
+   ============================================================ */
+
+html, body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body { font-size: 15px; line-height: 1.55; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+h1 { letter-spacing: -0.025em; line-height: 1.1; }
+p { text-wrap: pretty; }
+
+/* Numbers line up in tables, scores and timers */
+.font-mono, [class*="font-mono"] { font-variant-numeric: tabular-nums; letter-spacing: 0; }
+
+/* Keyboard users always see where they are */
+:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 2px;
+}
+
+::selection { background: #3760C2; color: #FFFFFF; }
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #4E4E4A; }
+
+/* ============================================================
+   SURFACES (class names kept for existing markup; all solid now)
+   ============================================================ */
+
+.glass, .glass-panel, .glass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+}
+
+.glass-nav {
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.card-premium {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: border-color 0.15s ease;
+}
+.card-premium:hover { border-color: #4E4E4A; }
+
+.hover-lift { transition: border-color 0.15s ease; }
+.hover-lift:hover { border-color: #4E4E4A; }
+
+/* Accent text: a plain colour, never a gradient */
+.text-gradient { color: var(--text-accent); }
+
+/* ============================================================
+   FUNCTIONAL ANIMATION ONLY (live audio and recording state)
+   ============================================================ */
+
+@keyframes waveBar {
+  0%, 100% { transform: scaleY(0.4); }
+  50% { transform: scaleY(1); }
+}
+
+@keyframes ping-slow {
+  0% { transform: scale(1); opacity: 1; }
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+
+.animate-ping-slow { animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+.wave-bar {
+  display: inline-block;
+  border-radius: 2px;
+  background: var(--text-accent);
+  transform-origin: bottom;
+  animation: waveBar 0.8s ease-in-out infinite;
+}
+
+/* ============================================================
+   LIGHT MODE
+   Pages are written dark-first with arbitrary hex surfaces; these map them to the light palette.
+   ============================================================ */
+
+html.light {
+  color-scheme: light;
+  background-color: #F7F7F5;
+  color: #1A1A19;
+}
+
+html.light body {
+  background-color: #F7F7F5 !important;
+  color: #1A1A19 !important;
+}
+
+html.light .card-premium:hover,
+html.light .hover-lift:hover { border-color: #CFCFCA; }
+
+/* Raised surfaces become white */
+html.light [class*="bg-[#0E0E0D"],
+html.light [class*="bg-[#121211"],
+html.light [class*="bg-[#141413"],
+html.light [class*="bg-[#1A1A19"],
+html.light [class*="bg-[#1C1C1A"],
+html.light [class*="bg-[#1E1E1C"],
+html.light [class*="bg-[#262624"] {
+  background-color: #FFFFFF !important;
+}
+
+/* Page-level and inset surfaces become the off-white page colour */
+html.light [class*="bg-[#161615"],
+html.light [class*="bg-[#171716"],
+html.light [class*="bg-[#1F1F1E"],
+html.light [class*="bg-[#252523"],
+html.light [class*="bg-[#2B2B29"],
+html.light [class*="bg-[#30302E"] {
+  background-color: #F7F7F5 !important;
+}
+
+html.light [class*="bg-[#1F2B47"] { background-color: #E8EEFB !important; }
+
+/* Tailwind grey surfaces used for chips and badges */
+html.light [class^="bg-gray-700"], html.light [class*=" bg-gray-700"],
+html.light [class^="bg-gray-800"], html.light [class*=" bg-gray-800"],
+html.light [class^="bg-gray-900"], html.light [class*=" bg-gray-900"],
+html.light [class^="bg-gray-950"], html.light [class*=" bg-gray-950"] { background-color: #EFEFEC !important; }
+
+/* Text */
+html.light .text-white,
+html.light [class*="text-white"],
+html.light [class*="text-[#F2F2EF"] { color: #1A1A19 !important; }
+html.light [class*="text-gray-100"] { color: #262624 !important; }
+html.light [class*="text-gray-200"] { color: #3A3A37 !important; }
+html.light [class*="text-gray-300"] { color: #474743 !important; }
+html.light [class*="text-gray-400"] { color: #52524D !important; }
+html.light [class*="text-gray-500"] { color: #62625E !important; }
+html.light [class*="text-[#A8A8A2"] { color: #4E4E4A !important; }
+html.light [class*="text-[#8A8A84"] { color: #62625E !important; }
+html.light [class*="text-brand-200"],
+html.light [class*="text-brand-300"],
+html.light [class*="text-brand-400"] { color: #2D4E9E !important; }
+html.light [class*="text-emerald-300"],
+html.light [class*="text-emerald-400"] { color: #047857 !important; }
+html.light [class*="text-amber-300"],
+html.light [class*="text-amber-400"] { color: #92400E !important; }
+html.light [class*="text-rose-200"],
+html.light [class*="text-rose-300"],
+html.light [class*="text-rose-400"],
+html.light [class*="text-red-400"] { color: #B91C1C !important; }
+
+html.light [class*="text-orange-300"],
+html.light [class*="text-orange-400"] { color: #C2410C !important; }
+
+/* Borders (only the base class, so hover:/focus: variants keep their own colour) */
+html.light [class^="border-gray-800"],
+html.light [class*=" border-gray-800"],
+html.light [class^="border-gray-700"],
+html.light [class*=" border-gray-700"],
+html.light [class^="border-[#353532"],
+html.light [class*=" border-[#353532"],
+html.light [class^="border-[#3A3A37"],
+html.light [class*=" border-[#3A3A37"],
+html.light [class^="border-[#252523"],
+html.light [class*=" border-[#252523"],
+html.light [class^="border-[#2B2B29"],
+html.light [class*=" border-[#2B2B29"] { border-color: #E2E2DE !important; }
+
+/* Text on solid coloured buttons stays white */
+html.light [class~="bg-brand-600"],
+html.light [class~="bg-brand-600"] *,
+html.light [class~="bg-brand-500"],
+html.light [class~="bg-brand-500"] *,
+html.light [class~="bg-emerald-600"],
+html.light [class~="bg-emerald-600"] *,
+html.light [class~="bg-rose-600"],
+html.light [class~="bg-rose-600"] *,
+html.light [class~="bg-amber-600"],
+html.light [class~="bg-amber-600"] *,
+html.light [class~="bg-amber-700"],
+html.light [class~="bg-amber-700"] * { color: #FFFFFF !important; }
+
+/* Forms */
+html.light input:not([type="checkbox"]):not([type="radio"]),
+html.light textarea,
+html.light select {
+  background-color: #FFFFFF !important;
+  color: #1A1A19 !important;
+  border-color: #CFCFCA !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder { color: #8E8E88 !important; }
+
+/* Tinted labels */
+html.light [class*="bg-brand-500/10"],
+html.light [class*="bg-brand-600/10"],
+html.light [class*="bg-brand-600/15"],
+html.light [class*="bg-brand-500/20"],
+html.light [class*="bg-brand-600/20"] {
+  background-color: #E8EEFB !important;
+  color: #2D4E9E !important;
+  border-color: #BBCFF6 !important;
+}
+
+html.light [class*="bg-emerald-500/10"],
+html.light [class*="bg-emerald-400/10"],
+html.light [class*="bg-emerald-500/20"],
+html.light [class*="bg-emerald-600/20"] {
+  background-color: #ECFDF5 !important;
+  color: #047857 !important;
+  border-color: #A7F3D0 !important;
+}
+
+html.light [class*="bg-rose-500/10"],
+html.light [class*="bg-rose-500/20"],
+html.light [class*="bg-red-500/10"] {
+  background-color: #FFF1F2 !important;
+  color: #B91C1C !important;
+  border-color: #FECDD3 !important;
+}
+
+html.light [class*="bg-amber-500/10"],
+html.light [class*="bg-amber-500/20"] {
+  background-color: #FFFBEB !important;
+  color: #92400E !important;
+  border-color: #FDE68A !important;
+}
+
+/* Respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

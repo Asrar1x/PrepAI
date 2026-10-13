@@ -1,0 +1,73 @@
+{
+  "datasetId": "prepai-eval-120-v1",
+  "evaluatorVersion": "eval-v4",
+  "note": "Full 120-case run of the configured grading model (EVALUATION_MODEL). See modelComparisonReport.json for qwen2.5-coder:7b.",
+  "finishedAt": "2026-10-07T01:01:14.404Z",
+  "runs": [
+    {
+      "runId": "7e1a6bcb0346",
+      "model": "qwen3:8b",
+      "results": {
+        "fusion": {
+          "items": 120,
+          "classified": 120,
+          "accuracy3": 0.858,
+          "macroF1_3": 0.816,
+          "accuracy5": 0.742,
+          "macroF1_5": 0.654,
+          "mae": 16.05,
+          "pearsonR": 0.945,
+          "inRangeRate": 0.258,
+          "falsePositiveRate": 0,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 36062,
+          "latencyP95Ms": 45045,
+          "structuredOutputFailureRate": 0,
+          "conflictRate": 0.175,
+          "reviewRequiredRate": 0,
+          "consistency": {
+            "sampleSize": 10,
+            "meanAbsScoreDiff": 0.1,
+            "classAgreement": 1
+          }
+        },
+        "llm_only": {
+          "items": 120,
+          "classified": 120,
+          "accuracy3": 0.858,
+          "macroF1_3": 0.816,
+          "accuracy5": 0.742,
+          "macroF1_5": 0.654,
+          "mae": 17.59,
+          "pearsonR": 0.944,
+          "inRangeRate": 0.15,
+          "falsePositiveRate": 0,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 36062,
+          "latencyP95Ms": 45044,
+          "structuredOutputFailureRate": 0,
+          "conflictRate": null,
+          "reviewRequiredRate": null
+        },
+        "laya_only": {
+          "items": 120,
+          "classified": 118,
+          "accuracy3": 0.432,
+          "macroF1_3": 0.4,
+          "accuracy5": 0.398,
+          "macroF1_5": 0.253,
+          "mae": null,
+          "pearsonR": null,
+          "inRangeRate": null,
+          "falsePositiveRate": 0.448,
+          "falseNegativeRate": 0,
+          "latencyP50Ms": 12631,
+          "latencyP95Ms": 15145,
+          "structuredOutputFailureRate": 0.017,
+          "conflictRate": null,
+          "reviewRequiredRate": null
+        }
+      }
+    }
+  ]
+}
